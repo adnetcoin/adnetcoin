@@ -1,0 +1,6 @@
+usr/local/bin/adnetcoin-qt usr/bin
+share/pixmaps/adnetcoin32.xpm usr/share/pixmaps
+share/pixmaps/adnetcoin16.xpm usr/share/pixmaps
+share/pixmaps/adnetcoin128.png usr/share/pixmaps
+debian/adnetcoin-qt.desktop usr/share/applications
+debian/adnetcoin-qt.protocol usr/share/kde4/services/

@@ -17,14 +17,14 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/BTCGPU/BTCGPU
-gsigsUrl=https://github.com/BTCGPU/gitian.sigs
-detachUrl=https://github.com/BTCGPU/bitcoingold-detached-sigs
+url=https://github.com/adnetcoin/adnetcoin
+gsigsUrl=https://github.com/adnetcoin/gitian.sigs
+detachUrl=https://github.com/adnetcoin/adnetcoin-detached-sigs
 proc=2
 mem=2000
 lxc=true
 osslTarUrl=http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
-osslPatchUrl=https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
+osslPatchUrl=https://adnetcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
 scriptName=$(basename -- "$0")
 signProg="gpg --detach-sign"
 commitFiles=true
@@ -33,7 +33,7 @@ commitFiles=true
 read -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the bitcoin, gitian-builder, gitian.sigs, and bitcoingold-detached-sigs.
+Run this script from the directory containing the adnetcoin, gitian-builder, gitian.sigs, and adnetcoin-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -41,9 +41,9 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the bitcoingold repository. Default is https://github.com/BTCGPU/BTCGPU
--g|--gsigsUrl	Specify the URL of the gitian.sigs repository. Default is https://github.com/BTCGPU/gitian.sigs
--d|--detachUrl	Specify the URL of the bitcoingold-detached-sigs repository. Default is https://github.com/BTCGPU/bitcoingold-detached-sigs
+-u|--url	Specify the URL of the adnetcoin repository. Default is https://github.com/adnetcoin/adnetcoin
+-g|--gsigsUrl	Specify the URL of the gitian.sigs repository. Default is https://github.com/adnetcoin/gitian.sigs
+-d|--detachUrl	Specify the URL of the adnetcoin-detached-sigs repository. Default is https://github.com/adnetcoin/adnetcoin-detached-sigs
 -v|--verify 	Verify the Gitian build
 -b|--build	Do a Gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -267,7 +267,7 @@ then
 
     if [[ $detachUrl =~ $urlRegex ]]
     then
-    	git clone $detachUrl bitcoingold-detached-sigs
+    	git clone $detachUrl adnetcoin-detached-sigs
     fi
 
     git clone https://github.com/devrandom/gitian-builder.git
@@ -283,7 +283,7 @@ then
 fi
 
 # Set up build
-pushd ./BTCGPU
+pushd ./adnetcoin
 git fetch
 git checkout ${COMMIT}
 popd
@@ -292,7 +292,7 @@ popd
 if [[ $build = true ]]
 then
 	# Make output folder
-	mkdir -p ./bitcoin-binaries/${VERSION}
+	mkdir -p ./adnetcoin-binaries/${VERSION}
 
 	# Build Dependencies
 	echo ""
@@ -302,7 +302,7 @@ then
 	mkdir -p inputs
 	wget -N -P inputs $osslPatchUrl
 	wget -N -P inputs $osslTarUrl
-	make -C ../BTCGPU/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../adnetcoin/depends download SOURCES_PATH=`pwd`/cache/common
 
 	# Linux
 	if [[ $linux = true ]]
@@ -310,9 +310,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit BTCGPU=${COMMIT} --url BTCGPU=${url} ../BTCGPU/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p "${signProg}" --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../BTCGPU/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/bitcoin-gold-*.tar.gz build/out/src/bitcoin-gold-*.tar.gz ../bitcoin-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit adnetcoin=${COMMIT} --url adnetcoin=${url} ../adnetcoin/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p "${signProg}" --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../adnetcoin/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/adnetcoin-*.tar.gz build/out/src/adnetcoin-*.tar.gz ../adnetcoin-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -320,10 +320,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit BTCGPU=${COMMIT} --url BTCGPU=${url} ../BTCGPU/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p "${signProg}" --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../BTCGPU/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/bitcoin-gold-*-win-unsigned.tar.gz inputs/bitcoin-gold-win-unsigned.tar.gz
-	    mv build/out/bitcoin-gold-*.zip build/out/bitcoin-gold-*.exe ../bitcoin-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit adnetcoin=${COMMIT} --url adnetcoin=${url} ../adnetcoin/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p "${signProg}" --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../adnetcoin/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/adnetcoin-*-win-unsigned.tar.gz inputs/adnetcoin-win-unsigned.tar.gz
+	    mv build/out/adnetcoin-*.zip build/out/adnetcoin-*.exe ../adnetcoin-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -331,10 +331,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit BTCGPU=${COMMIT} --url BTCGPU=${url} ../BTCGPU/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p "${signProg}" --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../BTCGPU/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/bitcoin-gold-*-osx-unsigned.tar.gz inputs/bitcoin-gold-osx-unsigned.tar.gz
-	    mv build/out/bitcoin-gold-*.tar.gz build/out/bitcoin-gold-*.dmg ../bitcoin-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit adnetcoin=${COMMIT} --url adnetcoin=${url} ../adnetcoin/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p "${signProg}" --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../adnetcoin/contrib/gitian-descriptors/gitian-osx.yml
+	    mv build/out/adnetcoin-*-osx-unsigned.tar.gz inputs/adnetcoin-osx-unsigned.tar.gz
+	    mv build/out/adnetcoin-*.tar.gz build/out/adnetcoin-*.dmg ../adnetcoin-binaries/${VERSION}
 	fi
 	popd
 
@@ -361,27 +361,27 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../BTCGPU/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../adnetcoin/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../BTCGPU/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../adnetcoin/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../BTCGPU/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../adnetcoin/contrib/gitian-descriptors/gitian-osx.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../BTCGPU/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../adnetcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../BTCGPU/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../adnetcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
 	popd
 fi
 
@@ -396,10 +396,10 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} --url signature=${detachUrl} ../BTCGPU/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p "${signProg}" --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../BTCGPU/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/bitcoin-gold-*win64-setup.exe ../bitcoin-binaries/${VERSION}
-	    mv build/out/bitcoin-gold-*win32-setup.exe ../bitcoin-binaries/${VERSION}
+	    ./bin/gbuild -i --commit signature=${COMMIT} --url signature=${detachUrl} ../adnetcoin/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p "${signProg}" --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../adnetcoin/contrib/gitian-descriptors/gitian-win-signer.yml
+	    mv build/out/adnetcoin-*win64-setup.exe ../adnetcoin-binaries/${VERSION}
+	    mv build/out/adnetcoin-*win32-setup.exe ../adnetcoin-binaries/${VERSION}
 	fi
 	# Sign Mac OSX
 	if [[ $osx = true ]]
@@ -407,9 +407,9 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} --url signature=${detachUrl} ../BTCGPU/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p "${signProg}" --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../BTCGPU/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/bitcoin-gold-osx-signed.dmg ../bitcoin-binaries/${VERSION}/bitcoin-gold-${VERSION}-osx.dmg
+	    ./bin/gbuild -i --commit signature=${COMMIT} --url signature=${detachUrl} ../adnetcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p "${signProg}" --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../adnetcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    mv build/out/adnetcoin-osx-signed.dmg ../adnetcoin-binaries/${VERSION}/adnetcoin-${VERSION}-osx.dmg
 	fi
 	popd
 

@@ -1,0 +1,33 @@
+# /etc/conf.d/adnetcoind: config file for /etc/init.d/adnetcoind
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/adnetcoin/adnetcoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/adnetcoind"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/adnetcoind.pid"
+
+# Where to write adnetcoind data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/adnetcoind"
+
+# User and group to own adnetcoind process
+#BITCOIND_USER="adnetcoin"
+#BITCOIND_GROUP="adnetcoin"
+
+# Path to adnetcoind executable
+#BITCOIND_BIN="/usr/bin/adnetcoind"
+
+# Nice value to run adnetcoind under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#BITCOIND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for adnetcoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+BITCOIND_SIGTERM_TIMEOUT=60

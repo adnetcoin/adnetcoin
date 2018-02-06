@@ -14,7 +14,7 @@ LOCALNET_V4="192.168.0.0/16"
 LOCALNET_V6="fe80::/10"
 
 # RPC PORT
-RPC_PORT="8338"
+RPC_PORT="4222"
 
 #delete existing rules
 tc qdisc del dev ${IF} root

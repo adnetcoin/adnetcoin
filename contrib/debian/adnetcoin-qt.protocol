@@ -1,0 +1,11 @@
+[Protocol]
+exec=adnetcoin-qt '%u'
+protocol=adnetcoin
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

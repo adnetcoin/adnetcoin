@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include "config/adnetcoin-config.h"
 #endif
 
 #include "util.h"
@@ -87,9 +87,9 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "bitcoingold.conf";
-const char * const BITCOIN_LEGACY_CONF_FILENAME = "bitcoin.conf";
-const char * const BITCOIN_PID_FILENAME = "bgoldd.pid";
+const char * const BITCOIN_CONF_FILENAME = "adnetcoin.conf";
+const char * const BITCOIN_LEGACY_CONF_FILENAME = "adnetcoin.conf";
+const char * const BITCOIN_PID_FILENAME = "adnetcoind.pid";
 
 ArgsManager gArgs;
 bool fPrintToConsole = false;
@@ -507,7 +507,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(nullptr, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "bitcoin";
+    const char* pszModule = "adnetcoin";
 #endif
     if (pex)
         return strprintf(
@@ -526,13 +526,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\BitcoinGold
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\BitcoinGold
-    // Mac: ~/Library/Application Support/BitcoinGold
-    // Unix: ~/.bitcoingold
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Adnetcoin
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Adnetcoin
+    // Mac: ~/Library/Application Support/Adnetcoin
+    // Unix: ~/.adnetcoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "BitcoinGold";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Adnetcoin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -542,10 +542,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/BitcoinGold";
+    return pathRet / "Library/Application Support/Adnetcoin";
 #else
     // Unix
-    return pathRet / ".bitcoingold";
+    return pathRet / ".adnetcoin";
 #endif
 #endif
 }
@@ -612,7 +612,7 @@ void ArgsManager::ReadConfigFileInternal(const std::string& confPath) {
             setOptions.insert("*");
 
             for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-                // Don't overwrite existing settings so command line settings override bitcoingold.conf
+                // Don't overwrite existing settings so command line settings override adnetcoin.conf
                 std::string strKey = std::string("-") + it->string_key;
                 std::string strValue = it->value[0];
                 InterpretNegativeSetting(strKey, strValue);

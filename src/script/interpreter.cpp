@@ -101,7 +101,7 @@ bool static IsCompressedPubKey(const valtype &vchPubKey) {
  * excessively padded (do not start with a 0 byte, unless an otherwise negative number follows,
  * in which case a single 0 byte is necessary and even required).
  * 
- * See https://bitcointalk.org/index.php?topic=8392.msg127623#msg127623
+ * See https://adnetcointalk.org/index.php?topic=8392.msg127623#msg127623
  *
  * This function is consensus-critical since BIP66.
  */
@@ -1208,7 +1208,7 @@ uint256 SignatureHash(const CScript& scriptCode, const CTransaction& txTo, unsig
         nForkHashType |= forkid << 8;
 
     // force new tx with FORKID to use bip143 transaction digest algorithm
-    // see https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki
+    // see https://github.com/adnetcoin/bips/blob/master/bip-0143.mediawiki
     if (sigversion == SIGVERSION_WITNESS_V0 || UsesForkId(nHashType)) {
         uint256 hashPrevouts;
         uint256 hashSequence;

@@ -108,7 +108,7 @@ double GetDifficulty(const CBlockIndex* blockindex)
             blockindex = chainActive.Tip();
     }
 
-    if (blockindex->nHeight >= Params().GetConsensus().BTGHeight)
+    if (blockindex->nHeight >= Params().GetConsensus().ADNETHeight)
     {
         return GetDifficultyINTERNAL(blockindex);
     }
@@ -158,7 +158,7 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
         confirmations = chainActive.Height() - blockindex->nHeight + 1;
     result.push_back(Pair("confirmations", confirmations));
     const Consensus::Params& consensusParams = Params().GetConsensus();
-    int ser_flags = (blockindex->nHeight < consensusParams.BTGHeight) ? SERIALIZE_BLOCK_LEGACY : 0;
+    int ser_flags = (blockindex->nHeight < consensusParams.ADNETHeight) ? SERIALIZE_BLOCK_LEGACY : 0;
     result.push_back(
         Pair("strippedsize",
              (int)::GetSerializeSize(block, SER_NETWORK,
@@ -1021,8 +1021,8 @@ UniValue gettxout(const JSONRPCRequest& request)
             "     \"hex\" : \"hex\",        (string) \n"
             "     \"reqSigs\" : n,          (numeric) Number of required signatures\n"
             "     \"type\" : \"pubkeyhash\", (string) The type, eg pubkeyhash\n"
-            "     \"addresses\" : [          (array of string) array of bitcoin addresses\n"
-            "        \"address\"     (string) bitcoin address\n"
+            "     \"addresses\" : [          (array of string) array of adnetcoin addresses\n"
+            "        \"address\"     (string) adnetcoin address\n"
             "        ,...\n"
             "     ]\n"
             "  },\n"

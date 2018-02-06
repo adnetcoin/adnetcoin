@@ -4,7 +4,7 @@
 
 #include "compressor.h"
 #include "util.h"
-#include "test/test_bitcoin.h"
+#include "test/test_adnetcoin.h"
 
 #include <stdint.h>
 
@@ -17,10 +17,10 @@
 #define NUM_MULTIPLES_CENT 10000
 
 // amounts 1 .. 10000
-#define NUM_MULTIPLES_1BTG 10000
+#define NUM_MULTIPLES_1ADNET 10000
 
 // amounts 50 .. 21000000
-#define NUM_MULTIPLES_50BTG 420000
+#define NUM_MULTIPLES_50ADNET 420000
 
 BOOST_FIXTURE_TEST_SUITE(compress_tests, BasicTestingSetup)
 
@@ -52,10 +52,10 @@ BOOST_AUTO_TEST_CASE(compress_amounts)
     for (uint64_t i = 1; i <= NUM_MULTIPLES_CENT; i++)
         BOOST_CHECK(TestEncode(i * CENT));
 
-    for (uint64_t i = 1; i <= NUM_MULTIPLES_1BTG; i++)
+    for (uint64_t i = 1; i <= NUM_MULTIPLES_1ADNET; i++)
         BOOST_CHECK(TestEncode(i * COIN));
 
-    for (uint64_t i = 1; i <= NUM_MULTIPLES_50BTG; i++)
+    for (uint64_t i = 1; i <= NUM_MULTIPLES_50ADNET; i++)
         BOOST_CHECK(TestEncode(i * 50 * COIN));
 
     for (uint64_t i = 0; i < 100000; i++)

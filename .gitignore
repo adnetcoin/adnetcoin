@@ -1,13 +1,13 @@
 *.tar.gz
 
 *.exe
-src/bitcoin
-src/bgoldd
-src/bgold-cli
-src/bitcoin-tx
-src/test/test_bitcoin
-src/test/test_bitcoin_fuzzy
-src/qt/test/test_bitcoin-qt
+src/adnetcoin
+src/adnetcoind
+src/adnetcoin-cli
+src/adnetcoin-tx
+src/test/test_adnetcoin
+src/test/test_adnetcoin_fuzzy
+src/qt/test/test_adnetcoin-qt
 
 # autoreconf
 Makefile.in
@@ -30,8 +30,8 @@ config.log
 config.status
 configure
 libtool
-src/config/bitcoin-config.h
-src/config/bitcoin-config.h.in
+src/config/adnetcoin-config.h
+src/config/adnetcoin-config.h.in
 src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist
@@ -74,12 +74,12 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-bitcoin-qt
+adnetcoin-qt
 Bitcoin-Qt.app
 
 # Unit-tests
 Makefile.test
-bitcoin-qt_test
+adnetcoin-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -95,7 +95,7 @@ build
 *.gcno
 *.gcda
 /*.info
-test_bitcoin.coverage/
+test_adnetcoin.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -110,5 +110,5 @@ test/cache/*
 
 /doc/doxygen/
 
-libbitcoinconsensus.pc
+libadnetcoinconsensus.pc
 contrib/devtools/split-debug.sh

@@ -9,12 +9,12 @@
 This python code was modified from ArtForz' public domain  half-a-node, as
 found in the mini-node branch of http://github.com/jgarzik/pynode.
 
-NodeConn: an object which manages p2p connectivity to a bitcoin node
+NodeConn: an object which manages p2p connectivity to a adnetcoin node
 NodeConnCB: a base class that describes the interface for receiving
             callbacks with network messages from a NodeConn
 CBlock, CTransaction, CBlockHeader, CTxIn, CTxOut, etc....:
     data structures that should map to corresponding structures in
-    bitcoin/primitives
+    adnetcoin/primitives
 msg_block, msg_tx, msg_headers, etc.:
     data structures that represent network messages
 ser_*, deser_*: functions that handle serialization/deserialization
@@ -54,7 +54,7 @@ NODE_WITNESS = (1 << 3)
 NODE_UNSUPPORTED_SERVICE_BIT_5 = (1 << 5)
 NODE_UNSUPPORTED_SERVICE_BIT_7 = (1 << 7)
 
-BTG_REGTEST_HARDFORK_HEIGHT = 3000
+ADNET_REGTEST_HARDFORK_HEIGHT = 3000
 
 logger = logging.getLogger("TestFramework.mininode")
 
@@ -225,7 +225,7 @@ def FromHex(obj, hex_string):
 def ToHex(obj):
     return bytes_to_hex_str(obj.serialize())
 
-# Objects that map to bitcoind objects, which can be serialized/deserialized
+# Objects that map to adnetcoind objects, which can be serialized/deserialized
 
 class CAddress(object):
     def __init__(self):
@@ -457,7 +457,7 @@ class CTransaction(object):
         if len(self.vin) == 0:
             flags = struct.unpack("<B", f.read(1))[0]
             # Not sure why flags can't be zero, but this
-            # matches the implementation in bitcoind
+            # matches the implementation in adnetcoind
             if (flags != 0):
                 self.vin = deser_vector(f, CTxIn)
                 self.vout = deser_vector(f, CTxOut)
@@ -617,7 +617,7 @@ class CBlockHeader(object):
 
     def calc_sha256(self):
         if self.sha256 is None:
-            if self.nHeight < BTG_REGTEST_HARDFORK_HEIGHT:
+            if self.nHeight < ADNET_REGTEST_HARDFORK_HEIGHT:
                 r = self.serialize_header(legacy=True)
             else:
                 r = self.serialize_header(legacy=False)
@@ -1357,7 +1357,7 @@ class msg_headers(object):
         self.headers = []
 
     def deserialize(self, f):
-        # comment in bitcoind indicates these should be deserialized as blocks
+        # comment in adnetcoind indicates these should be deserialized as blocks
         blocks = deser_vector(f, CBlock)
         for x in blocks:
             self.headers.append(CBlockHeader(x))
@@ -1515,7 +1515,7 @@ class msg_witness_blocktxn(msg_blocktxn):
         return r
 
 class NodeConnCB(object):
-    """Callback and helper functions for P2P connection to a bitcoind node.
+    """Callback and helper functions for P2P connection to a adnetcoind node.
 
     Individual testcases should subclass this and override the on_* methods
     if they want to alter message handling behaviour.
