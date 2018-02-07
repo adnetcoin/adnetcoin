@@ -7,8 +7,4 @@ Adnetcoin preserves and implements Adnetcoin features such as SegWit. Significan
 - ASIC-resistant GPU-minable PoW algorithm (Equihash)
 - Per-block difficulty adjustment algorithm
 - Replay protection (SIGHASH_FORK_ID)
-- Unique wallet addresses (prefixes of G and A)
-
-Although ADNET was bootstrapped on 12 Nov to create an entirely new network, it contains the entire Adnetcoin blockchain until block 491406. As a result, Adnetcoin became a full fork with all Adnetcoin transaction history since 2009. Any Adnetcoin wallet address which held Adnetcoin in ADNET block 491406 before the fork held an equal number of Adnetcoin in ADNET block 491407 after the fork.
-
-
+- Unique wallet addresses (prefixes of A and D)
