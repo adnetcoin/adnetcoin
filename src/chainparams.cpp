@@ -183,6 +183,7 @@ public:
 			}
 		};
 
+
 		chainTxData = ChainTxData{
 			// Data as of block 000000000000000000d97e53664d17967bd4ee50b23abb92e54a34eb222d15ae (height 478913).
 			1517989126, // * UNIX timestamp of last known number of transactions
