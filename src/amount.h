@@ -26,4 +26,5 @@ static const CAmount CENT = 1000000;
 static const CAmount MAX_MONEY = 20000000 * COIN;
 inline bool MoneyRange(const CAmount& nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 
+
 #endif //  ADNETCOIN_AMOUNT_H
