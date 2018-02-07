@@ -130,10 +130,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1510704000; // November 15th, 2017.
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000000037aea98");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x0"); //477890
+        consensus.defaultAssumeValid = uint256S("0x00007be1dd7153176fd4b821c5d0dbc337115e207c6a1e11abef9ffd13316c48"); //496
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -160,9 +160,7 @@ public:
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
 
-        //vSeeds.emplace_back("eu-dnsseed.bitcoingold-official.org", true);
-        //vSeeds.emplace_back("dnsseed.bitcoingold.org", true);
-        //vSeeds.emplace_back("dnsseed.adnetgpu.org", true);
+        //vSeeds.emplace_back("seed.adnet-coin.org", true);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,23);  // prefix: A
 		base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,30);  // prefix: D
@@ -178,16 +176,19 @@ public:
 
         checkpointData = (CCheckpointData) {
 			{
-				//{ 0, uint256S("0x0")}
+				{ 100, uint256S("0x0002c2535205de0e81f12229e6240f498cd3febcad75da050177d919c3b93656")},
+				{ 200, uint256S("0x00001530413db6172d649bb24894c4db05baaa2b60acd2701e1cccc575843712")},
+				{ 300, uint256S("0x000040d4f999aa515f8c01b51fae570ad220b0bcf98a13c23b0e06aea656eec4")},
+				{ 400, uint256S("0x00002123a56a5e0873b0c09b1fc3510579b29d8ba18c6455d59e049b40ac22f2")},
 			}
 		};
 
 		chainTxData = ChainTxData{
 			// Data as of block 000000000000000000d97e53664d17967bd4ee50b23abb92e54a34eb222d15ae (height 478913).
-			1517897827, // * UNIX timestamp of last known number of transactions
-			0,  // * total number of transactions between genesis and that timestamp
+			1517989126, // * UNIX timestamp of last known number of transactions
+			519,  // * total number of transactions between genesis and that timestamp
 						//   (the tx=... number in the SetBestChain debug.log lines)
-			0         // * estimated number of transactions per second after that timestamp
+			0.01         // * estimated number of transactions per second after that timestamp
 		};
 
 		vPreminePubkeys = {};
@@ -265,10 +266,7 @@ public:
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
 
-        vSeeds.emplace_back("eu-test-dnsseed.bitcoingold-official.org", true);
-        vSeeds.emplace_back("test-dnsseed.bitcoingold.org", true);
-        vSeeds.emplace_back("test-dnsseed.adnetgpu.org", true);
-        vSeeds.emplace_back("ADNET.dnsseed.minertopia.org", true);
+        vSeeds.emplace_back("test-seed.adnet-coin.org", true);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
