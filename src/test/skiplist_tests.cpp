@@ -4,7 +4,7 @@
 
 #include "chain.h"
 #include "util.h"
-#include "test/test_bitcoin.h"
+#include "test/test_adnetcoin.h"
 
 #include <vector>
 

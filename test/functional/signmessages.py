@@ -4,9 +4,9 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test RPC commands for signing and verifying messages."""
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import AdnetcoinTestFramework
 
-class SignMessagesTest(BitcoinTestFramework):
+class SignMessagesTest(AdnetcoinTestFramework):
 
     def __init__(self):
         super().__init__()

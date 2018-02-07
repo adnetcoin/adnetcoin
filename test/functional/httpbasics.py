@@ -4,13 +4,13 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the RPC HTTP basics."""
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import AdnetcoinTestFramework
 from test_framework.util import *
 
 import http.client
 import urllib.parse
 
-class HTTPBasicsTest (BitcoinTestFramework):
+class HTTPBasicsTest (AdnetcoinTestFramework):
     def __init__(self):
         super().__init__()
         self.num_nodes = 3
@@ -90,7 +90,7 @@ class HTTPBasicsTest (BitcoinTestFramework):
         conn.request('POST', '/', '{"method": "getbestblockhash"}', headers)
         out1 = conn.getresponse().read()
         assert(b'"error":null' in out1)
-        assert(conn.sock!=None) #connection must be closed because bitcoind should use keep-alive by default
+        assert(conn.sock!=None) #connection must be closed because adnetcoind should use keep-alive by default
 
         # Check excessive request size
         conn = http.client.HTTPConnection(urlNode2.hostname, urlNode2.port)

@@ -9,7 +9,7 @@
 #include "uint256.h"
 #include "util.h"
 #include "utilstrencodings.h"
-#include "test/test_bitcoin.h"
+#include "test/test_adnetcoin.h"
 
 #include <string>
 #include <vector>
@@ -20,10 +20,10 @@ static const std::string strSecret1     ("5HxWvvfubhXpYYpS3tJkw6fq9jE9j18THftkZj
 static const std::string strSecret2     ("5KC4ejrDjv152FGwP386VD1i2NYc5KkfSMyv1nGy1VGDxGHqVY3");
 static const std::string strSecret1C    ("Kwr371tjA9u2rFSMZjTNun2PXXP3WPZu2afRHTcta6KxEUdm1vEw");
 static const std::string strSecret2C    ("L3Hq7a8FEQwJkW1M2GNKDW28546Vp5miewcCzSqUD9kCAXrJdS3g");
-static const CBitcoinAddress addr1 ("Gh6mFUoA3wAn7rbXEWYgjyDJgu8J72tcLH");
-static const CBitcoinAddress addr2 ("GXvtVMQCLTgr56cB76MT1EywxS1oCDN6em");
-static const CBitcoinAddress addr1C("GfeEGwCpwEncjfbCEU7AiLyCmhD5A3KWsz");
-static const CBitcoinAddress addr2C("GVGeSRJHz48p4kTpGMYph7KabYEzYyPDXr");
+static const CAdnetcoinAddress addr1 ("Gh6mFUoA3wAn7rbXEWYgjyDJgu8J72tcLH");
+static const CAdnetcoinAddress addr2 ("GXvtVMQCLTgr56cB76MT1EywxS1oCDN6em");
+static const CAdnetcoinAddress addr1C("GfeEGwCpwEncjfbCEU7AiLyCmhD5A3KWsz");
+static const CAdnetcoinAddress addr2C("GVGeSRJHz48p4kTpGMYph7KabYEzYyPDXr");
 
 
 static const std::string strAddressBad("GaL4kjNpM9BG2CMrg3KHTuE8gMepr8AE7o");
@@ -33,7 +33,7 @@ BOOST_FIXTURE_TEST_SUITE(key_tests, BasicTestingSetup)
 
 BOOST_AUTO_TEST_CASE(key_test1)
 {
-    CBitcoinSecret bsecret1, bsecret2, bsecret1C, bsecret2C, baddress1;
+    CAdnetcoinSecret bsecret1, bsecret2, bsecret1C, bsecret2C, baddress1;
     BOOST_CHECK( bsecret1.SetString (strSecret1));
     BOOST_CHECK( bsecret2.SetString (strSecret2));
     BOOST_CHECK( bsecret1C.SetString(strSecret1C));

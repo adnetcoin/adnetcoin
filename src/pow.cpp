@@ -18,16 +18,16 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 {
     assert(pindexLast != nullptr);
     int nHeight = pindexLast->nHeight + 1;
-    bool postfork = nHeight >= params.BTGHeight;
+    bool postfork = nHeight >= params.ADNETHeight;
     unsigned int nProofOfWorkLimit = UintToArith256(params.PowLimit(postfork)).GetCompact();
 
     if (postfork == false) {
-        return BitcoinGetNextWorkRequired(pindexLast, pblock, params);
+        return AdnetcoinGetNextWorkRequired(pindexLast, pblock, params);
     }
-    else if (nHeight < params.BTGHeight + params.BTGPremineWindow) {
+    else if (nHeight < params.ADNETHeight + params.ADNETPremineWindow) {
         return nProofOfWorkLimit;
     }
-    else if (nHeight < params.BTGHeight + params.BTGPremineWindow + params.nPowAveragingWindow){
+    else if (nHeight < params.ADNETHeight + params.ADNETPremineWindow + params.nPowAveragingWindow){
         return UintToArith256(params.powLimitStart).GetCompact();
     }
     
@@ -73,8 +73,8 @@ unsigned int CalculateNextWorkRequired(arith_uint256 bnAvg, int64_t nLastBlockTi
 }
 
 
-// Deprecated for Bitcoin Gold
-unsigned int BitcoinGetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
+// Deprecated for Adnetcoin
+unsigned int AdnetcoinGetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
     assert(pindexLast != nullptr);
     unsigned int nProofOfWorkLimit = UintToArith256(params.PowLimit(false)).GetCompact();
@@ -107,12 +107,12 @@ unsigned int BitcoinGetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
     const CBlockIndex* pindexFirst = pindexLast->GetAncestor(nHeightFirst);
     assert(pindexFirst);
 
-    return BitcoinCalculateNextWorkRequired(pindexLast, pindexFirst->GetBlockTime(), params);
+    return AdnetcoinCalculateNextWorkRequired(pindexLast, pindexFirst->GetBlockTime(), params);
 }
 
 
-// Depricated for Bitcoin Gold
-unsigned int BitcoinCalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
+// Depricated for Adnetcoin
+unsigned int AdnetcoinCalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
     if (params.fPowNoRetargeting)
         return pindexLast->nBits;

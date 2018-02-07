@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CRYPTO_COMMON_H
-#define BITCOIN_CRYPTO_COMMON_H
+#ifndef ADNETCOIN_CRYPTO_COMMON_H
+#define ADNETCOIN_CRYPTO_COMMON_H
 
 #if defined(HAVE_CONFIG_H)
-#include "bitcoin-config.h"
+#include "adnetcoin-config.h"
 #endif
 
 #include <assert.h>
@@ -140,4 +140,4 @@ int inline init_and_check_sodium()
     return 0;
 }
 
-#endif // BITCOIN_CRYPTO_COMMON_H
+#endif // ADNETCOIN_CRYPTO_COMMON_H

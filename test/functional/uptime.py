@@ -9,10 +9,10 @@ Test corresponds to code in rpc/server.cpp.
 
 import time
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import AdnetcoinTestFramework
 
 
-class UptimeTest(BitcoinTestFramework):
+class UptimeTest(AdnetcoinTestFramework):
     def __init__(self):
         super().__init__()
 

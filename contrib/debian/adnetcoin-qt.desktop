@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Adnetcoin
+Comment=Connect to the Adnetcoin P2P Network
+Comment[de]=Verbinde mit dem Adnetcoin peer-to-peer Netzwerk
+Comment[fr]=Adnetcoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Adnetcoin, eşten eşe kriptografik sanal para birimi
+Exec=adnetcoin-qt %u
+Terminal=false
+Type=Application
+Icon=adnetcoin128
+MimeType=x-scheme-handler/adnetcoin;
+Categories=Office;Finance;

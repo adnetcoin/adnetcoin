@@ -50,7 +50,7 @@
 #include <boost/thread.hpp>
 
 #if defined(NDEBUG)
-# error "Bitcoin cannot be compiled without assertions."
+# error "Adnetcoin cannot be compiled without assertions."
 #endif
 
 /**
@@ -92,7 +92,7 @@ static void CheckBlockIndex(const Consensus::Params& consensusParams);
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const std::string strMessageMagic = "Bitcoin Gold Signed Message:\n";
+const std::string strMessageMagic = "Adnetcoin Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -351,21 +351,21 @@ static bool IsCurrentForFeeEstimation()
     return true;
 }
 
-bool static IsBTGHardForkEnabled(int nHeight, const Consensus::Params& params) {
-    return nHeight >= params.BTGHeight;
+bool static IsADNETHardForkEnabled(int nHeight, const Consensus::Params& params) {
+    return nHeight >= params.ADNETHeight;
 }
 
-bool IsBTGHardForkEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params) {
+bool IsADNETHardForkEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params) {
     if (pindexPrev == nullptr) {
         return false;
     }
 
-    return IsBTGHardForkEnabled(pindexPrev->nHeight, params);
+    return IsADNETHardForkEnabled(pindexPrev->nHeight, params);
 }
 
-bool IsBTGHardForkEnabledForCurrentBlock(const Consensus::Params& params) {
+bool IsADNETHardForkEnabledForCurrentBlock(const Consensus::Params& params) {
     AssertLockHeld(cs_main);
-    return IsBTGHardForkEnabled(chainActive.Tip(), params);
+    return IsADNETHardForkEnabled(chainActive.Tip(), params);
 }
 
 /* Make mempool consistent after a reorg, by re-adding or recursively erasing
@@ -856,7 +856,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
         // Remove conflicting transactions from the mempool
         for (const CTxMemPool::txiter it : allConflicting)
         {
-            LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s BTC additional fees, %d delta bytes\n",
+            LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s ADNET additional fees, %d delta bytes\n",
                     it->GetTx().GetHash().ToString(),
                     hash.ToString(),
                     FormatMoney(nModifiedFees - nConflictingFees),
@@ -1018,7 +1018,7 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
     }
 
     // Check Equihash solution
-    bool postfork = block.nHeight >= (uint32_t)consensusParams.BTGHeight;
+    bool postfork = block.nHeight >= (uint32_t)consensusParams.ADNETHeight;
     if (postfork && !CheckEquihashSolution(&block, Params())) {
         return error("ReadBlockFromDisk: Errors in block header at %s (bad Equihash solution)", pos.ToString());
     }
@@ -1554,7 +1554,7 @@ static bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, 
 static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck() {
-    RenameThread("bitcoin-scriptch");
+    RenameThread("adnetcoin-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -1633,7 +1633,7 @@ static unsigned int GetBlockScriptFlags(const CBlockIndex* pindex, const Consens
         flags |= SCRIPT_VERIFY_NULLDUMMY;
     }
 
-    if (IsBTGHardForkEnabled(pindex->pprev, consensusparams)) {
+    if (IsADNETHardForkEnabled(pindex->pprev, consensusparams)) {
         flags |= SCRIPT_VERIFY_STRICTENC;
     } else {
         flags |= SCRIPT_ALLOW_NON_FORKID;
@@ -2794,7 +2794,7 @@ static bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, 
 static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
     // Check Equihash solution is valid
-    bool postfork = block.nHeight >= (uint32_t)consensusParams.BTGHeight;
+    bool postfork = block.nHeight >= (uint32_t)consensusParams.ADNETHeight;
     if (fCheckPOW && postfork && !CheckEquihashSolution(&block, Params())) {
         LogPrintf("CheckBlockHeader(): Equihash solution invalid at height %d\n", block.nHeight);
         return state.DoS(100, error("CheckBlockHeader(): Equihash solution invalid"),
@@ -2842,7 +2842,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     // Size limits
     int serialization_flags = SERIALIZE_TRANSACTION_NO_WITNESS;
-    if (block.nHeight < (uint32_t)consensusParams.BTGHeight) {
+    if (block.nHeight < (uint32_t)consensusParams.ADNETHeight) {
         serialization_flags |= SERIALIZE_BLOCK_LEGACY;
     }
     if (block.vtx.empty() || block.vtx.size() * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT || ::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION | serialization_flags) * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT)
@@ -2960,8 +2960,8 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
             return state.DoS(100, error("%s: forked chain older than last checkpoint (height %d)", __func__, nHeight), REJECT_CHECKPOINT, "bad-fork-prior-to-checkpoint");
     }
 
-    // Check block height for blocks after BTG fork.
-    if (nHeight >= consensusParams.BTGHeight && block.nHeight != (uint32_t)nHeight)
+    // Check block height for blocks after ADNET fork.
+    if (nHeight >= consensusParams.ADNETHeight && block.nHeight != (uint32_t)nHeight)
         return state.Invalid(false, REJECT_INVALID, "bad-height", "incorrect block height");
 
     // Check timestamp against prev
@@ -3005,18 +3005,18 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
     }
 
     // Enforce rule that the coinbase starts with serialized block height
-    if (nHeight >= consensusParams.BIP34Height)
+    /*if (nHeight >= consensusParams.BIP34Height)
     {
-        CScript expect = CScript() << nHeight;
+    	CScript expect = CScript() << nHeight;
         if (block.vtx[0]->vin[0].scriptSig.size() < expect.size() ||
             !std::equal(expect.begin(), expect.end(), block.vtx[0]->vin[0].scriptSig.begin())) {
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-height", false, "block height mismatch in coinbase");
         }
-    }
+    }*/
 
-    if (nHeight >= consensusParams.BTGHeight &&
-        nHeight < consensusParams.BTGHeight + consensusParams.BTGPremineWindow &&
-        consensusParams.BTGPremineEnforceWhitelist)
+    if (nHeight >= consensusParams.ADNETHeight &&
+        nHeight < consensusParams.ADNETHeight + consensusParams.ADNETPremineWindow &&
+        consensusParams.ADNETPremineEnforceWhitelist)
     {
         if (block.vtx[0]->vout.size() != 1) {
             return state.DoS(

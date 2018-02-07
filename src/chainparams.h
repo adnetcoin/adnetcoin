@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CHAINPARAMS_H
-#define BITCOIN_CHAINPARAMS_H
+#ifndef ADNETCOIN_CHAINPARAMS_H
+#define ADNETCOIN_CHAINPARAMS_H
 
 #include "chainparamsbase.h"
 #include "consensus/params.h"
@@ -39,7 +39,7 @@ struct ChainTxData {
 
 /**
  * CChainParams defines various tweakable parameters of a given instance of the
- * Bitcoin system. There are three: the main network on which people trade goods
+ * Adnetcoin system. There are three: the main network on which people trade goods
  * and services, the public test network which gets reset from time to time and
  * a regression test mode which is intended for private networks only. It has
  * minimal difficulty to ensure that blocks can be found instantly.
@@ -117,10 +117,10 @@ std::unique_ptr<CChainParams> CreateChainParams(const std::string& chain);
 const CChainParams &Params();
 
 /**
- * Return the chain parameters with Bitcoin address format. This is used for
+ * Return the chain parameters with Adnetcoin address format. This is used for
  * address conversion.
  */
-const CChainParams &BitcoinAddressFormatParams();
+const CChainParams &AdnetcoinAddressFormatParams();
 
 /**
  * Sets the params returned by Params() to those for the given BIP70 chain name.
@@ -133,4 +133,4 @@ void SelectParams(const std::string& chain);
  */
 void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout);
 
-#endif // BITCOIN_CHAINPARAMS_H
+#endif // ADNETCOIN_CHAINPARAMS_H

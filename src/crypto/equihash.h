@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_EQUIHASH_H
-#define BITCOIN_EQUIHASH_H
+#ifndef ADNETCOIN_EQUIHASH_H
+#define ADNETCOIN_EQUIHASH_H
 
 #include "compat/endian.h"
 #include "crypto/sha256.h"
@@ -273,4 +273,4 @@ inline bool EhOptimisedSolveUncancellable(unsigned int n, unsigned int k, const 
         throw std::invalid_argument("Unsupported Equihash parameters"); \
     }
 
-#endif // BITCOIN_EQUIHASH_H
+#endif // ADNETCOIN_EQUIHASH_H

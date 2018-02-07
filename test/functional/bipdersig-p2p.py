@@ -7,7 +7,7 @@
 Test that the DERSIG soft-fork activates at (regtest) height 1251.
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import AdnetcoinTestFramework
 from test_framework.util import *
 from test_framework.mininode import *
 from test_framework.blocktools import create_coinbase, create_block
@@ -47,7 +47,7 @@ def create_transaction(node, coinbase, to_address, amount):
     tx.deserialize(BytesIO(hex_str_to_bytes(signresult['hex'])))
     return tx
 
-class BIP66Test(BitcoinTestFramework):
+class BIP66Test(AdnetcoinTestFramework):
 
     def __init__(self):
         super().__init__()
@@ -131,9 +131,9 @@ class BIP66Test(BitcoinTestFramework):
         assert wait_until (lambda: "reject" in node0.last_message.keys())
         with mininode_lock:
             # We can receive different reject messages depending on whether
-            # bitcoind is running with multiple script check threads. If script
+            # adnetcoind is running with multiple script check threads. If script
             # check threads are not in use, then transaction script validation
-            # happens sequentially, and bitcoind produces more specific reject
+            # happens sequentially, and adnetcoind produces more specific reject
             # reasons.
             assert node0.last_message["reject"].code in [REJECT_INVALID, REJECT_NONSTANDARD]
             assert_equal(node0.last_message["reject"].data, block.sha256)

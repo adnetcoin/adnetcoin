@@ -25,7 +25,7 @@ from test_framework.mininode import (
     msg_getdata,
     wait_until,
 )
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import AdnetcoinTestFramework
 from test_framework.util import (
     assert_equal,
     connect_nodes,
@@ -67,11 +67,11 @@ def custom_function():
 
     If this function is more generally useful for other tests, consider
     moving it to a module in test_framework."""
-    # self.log.info("running custom_function")  # Oops! Can't run self.log outside the BitcoinTestFramework
+    # self.log.info("running custom_function")  # Oops! Can't run self.log outside the AdnetcoinTestFramework
     pass
 
-class ExampleTest(BitcoinTestFramework):
-    # Each functional test is a subclass of the BitcoinTestFramework class.
+class ExampleTest(AdnetcoinTestFramework):
+    # Each functional test is a subclass of the AdnetcoinTestFramework class.
 
     # Override the __init__(), add_options(), setup_chain(), setup_network()
     # and setup_nodes() methods to customize the test setup as required.
@@ -128,7 +128,7 @@ class ExampleTest(BitcoinTestFramework):
 
         Define it in a method here because you're going to use it repeatedly.
         If you think it's useful in general, consider moving it to the base
-        BitcoinTestFramework class so other tests can use it."""
+        AdnetcoinTestFramework class so other tests can use it."""
 
         self.log.info("Running custom_method")
 

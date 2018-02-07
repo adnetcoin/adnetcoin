@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SCRIPT_INTERPRETER_H
-#define BITCOIN_SCRIPT_INTERPRETER_H
+#ifndef ADNETCOIN_SCRIPT_INTERPRETER_H
+#define ADNETCOIN_SCRIPT_INTERPRETER_H
 
 #include "script_error.h"
 #include "primitives/transaction.h"
@@ -32,10 +32,10 @@ enum
 enum
 {
     FORKID_BCC = 0,
-    FORKID_BTG = 79, // Atomic number AU
+    FORKID_ADNET = 79, // Atomic number AU
 };
 
-static const int FORKID_IN_USE = FORKID_BTG;
+static const int FORKID_IN_USE = FORKID_ADNET;
 
 /** Script verification flags */
 enum
@@ -121,7 +121,7 @@ enum
     //
     //SCRIPT_ENABLE_SIGHASH_FORKID = (1U << 16),
 
-    // Allow NON_FORKID in legacy tests and blocks under BTG hard fork height
+    // Allow NON_FORKID in legacy tests and blocks under ADNET hard fork height
     //
     SCRIPT_ALLOW_NON_FORKID = (1U << 17),
 };
@@ -197,4 +197,4 @@ bool VerifyScript(const CScript& scriptSig, const CScript& scriptPubKey, const C
 
 size_t CountWitnessSigOps(const CScript& scriptSig, const CScript& scriptPubKey, const CScriptWitness* witness, unsigned int flags);
 
-#endif // BITCOIN_SCRIPT_INTERPRETER_H
+#endif // ADNETCOIN_SCRIPT_INTERPRETER_H

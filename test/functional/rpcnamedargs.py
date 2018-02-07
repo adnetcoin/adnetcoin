@@ -4,14 +4,14 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test using named arguments for RPCs."""
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import AdnetcoinTestFramework
 from test_framework.util import (
     assert_equal,
     assert_raises_jsonrpc,
 )
 
 
-class NamedArgumentTest(BitcoinTestFramework):
+class NamedArgumentTest(AdnetcoinTestFramework):
     """
     Test named arguments on RPC calls.
     """

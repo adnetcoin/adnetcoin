@@ -4,7 +4,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Functionality to build scripts, as well as SignatureHash().
 
-This file is modified from python-bitcoinlib.
+This file is modified from python-adnetcoinlib.
 """
 
 from .mininode import CTransaction, CTxOut, sha256, hash256, uint256_from_str, ser_uint256, ser_string
@@ -826,7 +826,7 @@ SIGHASH_SINGLE = 3
 SIGHASH_FORKID = 0x40
 SIGHASH_ANYONECANPAY = 0x80
 
-FORKID_BTG = 79 # Atomic number AU
+FORKID_ADNET = 79 # Atomic number AU
 
 def FindAndDelete(script, sig):
     """Consensus critical, see FindAndDelete() in Satoshi codebase"""
@@ -930,7 +930,7 @@ def SegwitVersion1SignatureHash(script, txTo, inIdx, hashtype, amount):
         hashOutputs = uint256_from_str(hash256(serialize_outputs))
 
     if hashtype & SIGHASH_FORKID:
-        hashtype |= FORKID_BTG << 8
+        hashtype |= FORKID_ADNET << 8
 
     ss = bytes()
     ss += struct.pack("<i", txTo.nVersion)

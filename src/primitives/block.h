@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_PRIMITIVES_BLOCK_H
-#define BITCOIN_PRIMITIVES_BLOCK_H
+#ifndef ADNETCOIN_PRIMITIVES_BLOCK_H
+#define ADNETCOIN_PRIMITIVES_BLOCK_H
 
 #include "arith_uint256.h"
 #include "primitives/transaction.h"
@@ -216,4 +216,4 @@ struct CBlockLocator
     }
 };
 
-#endif // BITCOIN_PRIMITIVES_BLOCK_H
+#endif // ADNETCOIN_PRIMITIVES_BLOCK_H

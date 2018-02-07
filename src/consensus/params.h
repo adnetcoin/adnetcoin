@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CONSENSUS_PARAMS_H
-#define BITCOIN_CONSENSUS_PARAMS_H
+#ifndef ADNETCOIN_CONSENSUS_PARAMS_H
+#define ADNETCOIN_CONSENSUS_PARAMS_H
 
 #include "uint256.h"
 #include <map>
@@ -46,11 +46,11 @@ struct Params {
     int BIP65Height;
     /** Block height at which BIP66 becomes active */
     int BIP66Height;
-    /** Block height at which Bitcoin GPU hard fork becomes active */
-    int BTGHeight;
-    /** Premining blocks for Bitcoin GPU hard fork **/
-    int BTGPremineWindow;
-    bool BTGPremineEnforceWhitelist;
+    /** Block height at which Adnetcoin GPU hard fork becomes active */
+    int ADNETHeight;
+    /** Premining blocks for Adnetcoin GPU hard fork **/
+    int ADNETPremineWindow;
+    bool ADNETPremineEnforceWhitelist;
     /**
      * Minimum blocks including miner confirmation of the total of 2016 blocks in a retargeting period,
      * (nPowTargetTimespan / nPowTargetSpacing) which is also used for BIP9 deployments.
@@ -85,4 +85,4 @@ struct Params {
 };
 } // namespace Consensus
 
-#endif // BITCOIN_CONSENSUS_PARAMS_H
+#endif // ADNETCOIN_CONSENSUS_PARAMS_H

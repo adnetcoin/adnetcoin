@@ -1,0 +1,8 @@
+/usr/bin/adnetcoin-cli		--	gen_context(system_u:object_r:adnetcoin_exec_t,s0)
+/usr/sbin/adnetcoind		--	gen_context(system_u:object_r:adnetcoin_exec_t,s0)
+/usr/lib(64)?/adnetcoin/adnetcoind		--	gen_context(system_u:object_r:adnetcoin_exec_t,s0)
+
+/etc/adnetcoin(/.*)?		gen_context(system_u:object_r:adnetcoin_conf_t,s0)
+/var/lib/adnetcoin(/.*)?		gen_context(system_u:object_r:adnetcoin_var_lib_t,s0)
+
+(/var)?/run/adnetcoind(/.*)?   gen_context(system_u:object_r:adnetcoin_var_run_t,s0)

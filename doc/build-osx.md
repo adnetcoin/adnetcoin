@@ -24,17 +24,17 @@ If you want to build the disk image with `make deploy` (.dmg / optional), you ne
 
 NOTE: Building with Qt4 is still supported, however, could result in a broken UI. Building with Qt5 is recommended.
 
-Build Bitcoin Gold
+Build Adnetcoin
 ------------------------
 
-1. Clone the Bitcoin Gold source code and cd into `BTCGPU`
+1. Clone the Adnetcoin source code and cd into `adnetcoin`
 
-        git clone https://github.com/BTCGPU/BTCGPU
-        cd BTCGPU
+        git clone https://github.com/adnetcoin/adnetcoin
+        cd adnetcoin
 
-2.  Build BTCGPU:
+2.  Build adnetcoin:
 
-    Configure and build the headless bitcoin binaries as well as the GUI (if Qt is found).
+    Configure and build the headless adnetcoin binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
 
@@ -53,37 +53,37 @@ Build Bitcoin Gold
 Running
 -------
 
-Bitcoin Gold is now available at `./src/bgoldd`
+Adnetcoin is now available at `./src/adnetcoind`
 
 Before running, it's recommended you create an RPC configuration file.
 
-    echo -e "rpcuser=bitcoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "$HOME/Library/Application Support/BitcoinGold/bitcoingold.conf"
+    echo -e "rpcuser=adnetcoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "$HOME/Library/Application Support/Adnetcoin/adnetcoin.conf"
 
-    chmod 600 "$HOME/Library/Application Support/BitcoinGold/bitcoingold.conf"
+    chmod 600 "$HOME/Library/Application Support/Adnetcoin/adnetcoin.conf"
 
-The first time you run bgoldd, it will start downloading the blockchain. This process could take several hours.
+The first time you run adnetcoind, it will start downloading the blockchain. This process could take several hours.
 
 You can monitor the download process by looking at the debug.log file:
 
-    tail -f $HOME/Library/Application\ Support/BitcoinGold/debug.log
+    tail -f $HOME/Library/Application\ Support/Adnetcoin/debug.log
 
 Other commands:
 -------
 
-    ./src/bgoldd -daemon # Starts the bitcoin daemon.
-    ./src/bgold-cli --help # Outputs a list of command-line options.
-    ./src/bgold-cli help # Outputs a list of RPC commands when the daemon is running.
+    ./src/adnetcoind -daemon # Starts the adnetcoin daemon.
+    ./src/adnetcoin-cli --help # Outputs a list of command-line options.
+    ./src/adnetcoin-cli help # Outputs a list of RPC commands when the daemon is running.
 
 Using Qt Creator as IDE
 ------------------------
-You can use Qt Creator as an IDE, for bitcoin development.
+You can use Qt Creator as an IDE, for adnetcoin development.
 Download and install the community edition of [Qt Creator](https://www.qt.io/download/).
 Uncheck everything except Qt Creator during the installation process.
 
 1. Make sure you installed everything through Homebrew mentioned above
 2. Do a proper ./configure --enable-debug
 3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "bitcoin-qt" as project name, enter src/qt as location
+4. Enter "adnetcoin-qt" as project name, enter src/qt as location
 5. Leave the file selection as it is
 6. Confirm the "summary page"
 7. In the "Projects" tab select "Manage Kits..."
@@ -96,4 +96,4 @@ Notes
 
 * Tested on OS X 10.8 through 10.12 on 64-bit Intel processors only.
 
-* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/bitcoin/bitcoin/issues/7714)
+* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/adnetcoin/adnetcoin/issues/7714)

@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_NET_H
-#define BITCOIN_NET_H
+#ifndef ADNETCOIN_NET_H
+#define ADNETCOIN_NET_H
 
 #include "addrdb.h"
 #include "addrman.h"
@@ -832,7 +832,7 @@ public:
     //! Sets the addrName only if it was not previously set
     void MaybeSetAddrName(const std::string& addrNameIn);
 
-    bool IsLegacyBlockHeader(int version) { return version < BTG_HARD_FORK_VERSION; };
+    bool IsLegacyBlockHeader(int version) { return version < ADNET_HARD_FORK_VERSION; };
 };
 
 
@@ -842,4 +842,4 @@ public:
 /** Return a timestamp in the future (in microseconds) for exponentially distributed events. */
 int64_t PoissonNextSend(int64_t nNow, int average_interval_seconds);
 
-#endif // BITCOIN_NET_H
+#endif // ADNETCOIN_NET_H

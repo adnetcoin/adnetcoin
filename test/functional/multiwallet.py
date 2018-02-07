@@ -4,14 +4,14 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test multiwallet.
 
-Verify that a bitcoind node can load multiple wallet files
+Verify that a adnetcoind node can load multiple wallet files
 """
 import os
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import AdnetcoinTestFramework
 from test_framework.util import assert_equal, assert_raises_jsonrpc
 
-class MultiWalletTest(BitcoinTestFramework):
+class MultiWalletTest(AdnetcoinTestFramework):
 
     def __init__(self):
         super().__init__()
