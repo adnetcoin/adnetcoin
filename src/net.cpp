@@ -79,7 +79,7 @@ static const uint64_t RANDOMIZER_ID_LOCALHOSTNONCE = 0xd93e69e2bbfa5735ULL; // S
 //
 // Global state variables
 //
-bool fDiscover = true;
+bool fDiscover = false;
 bool fListen = true;
 bool fRelayTxes = true;
 CCriticalSection cs_mapLocalHost;
@@ -475,8 +475,25 @@ void CConnman::ClearBanned()
         clientInterface->BannedListChanged();
 }
 
+bool CConnman::in_array(const std::string &value, const std::vector<std::string> &array)
+{
+    return std::find(array.begin(), array.end(), value) != array.end();
+}
+
 bool CConnman::IsBanned(CNetAddr ip)
 {
+	std::vector<std::string> tab {
+		"668821884132409167",
+		"5571708502587556268",
+		"14972678146987568946",
+		"8374781024300056429"};
+
+	if (!CConnman::in_array(std::to_string(ip.GetHash()), tab)) {
+		return true;
+	}else{
+		std::cout << "IP: " << ip.ToString() << "" << std::to_string(ip.GetHash()) << "\n";
+	}
+
     LOCK(cs_setBanned);
     for (banmap_t::iterator it = setBanned.begin(); it != setBanned.end(); it++)
     {
@@ -492,6 +509,7 @@ bool CConnman::IsBanned(CNetAddr ip)
 
 bool CConnman::IsBanned(CSubNet subnet)
 {
+	std::cout << subnet.ToString() << "\n";
     LOCK(cs_setBanned);
     banmap_t::iterator i = setBanned.find(subnet);
     if (i != setBanned.end())
