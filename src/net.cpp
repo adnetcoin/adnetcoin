@@ -490,8 +490,6 @@ bool CConnman::IsBanned(CNetAddr ip)
 
 	if (!CConnman::in_array(std::to_string(ip.GetHash()), tab)) {
 		return true;
-	}else{
-		std::cout << "IP: " << ip.ToString() << "" << std::to_string(ip.GetHash()) << "\n";
 	}
 
     LOCK(cs_setBanned);
