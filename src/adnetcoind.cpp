@@ -31,7 +31,7 @@
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for an experimental new digital currency called Adnetcoin (https://www.adnetcoin.org/),
+ * This is the developer documentation of the reference client for an experimental new digital currency called Adnetcoin (https://www.adnetcoin.cash/),
  * which enables instant payments to anyone, anywhere in the world. Adnetcoin uses peer-to-peer technology to operate
  * with no central authority: managing transactions and issuing money are carried out collectively by the network.
  *

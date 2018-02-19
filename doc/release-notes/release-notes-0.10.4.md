@@ -1,6 +1,6 @@
 Adnetcoin Core version 0.10.4 is now available from:
 
-  <https://adnetcoin.org/bin/adnetcoin-core-0.10.4/>
+  <https://adnetcoin.cash/bin/adnetcoin-core-0.10.4/>
 
 This is a new minor version release, bringing bug fixes, the BIP65
 (CLTV) consensus change, and relay policy preparation for BIP113. It is

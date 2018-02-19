@@ -522,7 +522,7 @@ std::string HelpMessage(HelpMessageMode mode)
 std::string LicenseInfo()
 {
     const std::string URL_SOURCE_CODE = "<https://github.com/adnetcoin/adnetcoin>";
-    const std::string URL_WEBSITE = "<https://adnetcoin.org>";
+    const std::string URL_WEBSITE = "<https://adnetcoin.cash>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2009, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

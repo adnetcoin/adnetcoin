@@ -2,7 +2,7 @@
 
 This issue tracker is only for technical issues related to adnetcoin.
 
-For reporting security issues, please see the official [Adnetcoin website](https://adnetcoin.org/).
+For reporting security issues, please see the official [Adnetcoin website](https://adnetcoin.cash/).
 
 ### Describe the issue
 

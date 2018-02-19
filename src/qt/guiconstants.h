@@ -49,7 +49,7 @@ static const int MAX_URI_LENGTH = 255;
 #define SPINNER_FRAMES 36
 
 #define QAPP_ORG_NAME "Adnetcoin"
-#define QAPP_ORG_DOMAIN "adnetcoin.org"
+#define QAPP_ORG_DOMAIN "adnetcoin.cash"
 #define QAPP_APP_NAME_DEFAULT "Adnetcoin-Qt"
 #define QAPP_APP_NAME_TESTNET "Adnetcoin-Qt-testnet"
 

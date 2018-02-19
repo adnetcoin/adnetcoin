@@ -20,8 +20,8 @@ Summary:	Peer to Peer Cryptographic Currency
 
 Group:		Applications/System
 License:	MIT
-URL:		https://adnetcoin.org/
-Source0:	https://adnetcoin.org/bin/adnetcoin-core-%{version}/adnetcoin-%{version}.tar.gz
+URL:		https://adnetcoin.cash/
+Source0:	https://adnetcoin.cash/bin/adnetcoin-core-%{version}/adnetcoin-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 
 Source10:	https://raw.githubusercontent.com/adnetcoin/adnetcoin/master/contrib/debian/examples/adnetcoin.conf

@@ -15,7 +15,7 @@ out collectively by the network. Adnetcoin Core is the name of open source
 software which enables the use of this currency.
 
 For more information, as well as an immediately useable, binary version of
-the Adnetcoin Core software, see https://adnetcoin.org/en/download, or read the
+the Adnetcoin Core software, see https://adnetcoin.cash/en/download, or read the
 [original whitepaper](https://adnetcoincore.org/adnetcoin.pdf).
 
 License

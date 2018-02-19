@@ -1,6 +1,6 @@
 Adnetcoin Core version 0.10.1 is now available from:
 
-  <https://adnetcoin.org/bin/adnetcoin-core-0.10.1/>
+  <https://adnetcoin.cash/bin/adnetcoin-core-0.10.1/>
 
 This is a new minor version release, bringing bug fixes and translation 
 updates. It is recommended to upgrade to this version.
