@@ -160,7 +160,8 @@ public:
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
 
-        //vSeeds.emplace_back("seed.adnet-coin.org", true);
+        vSeeds.emplace_back("seed.adnetcoin.cash", true);
+        vSeeds.emplace_back("seed.minergategpu.org", true);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,23);  // prefix: A
 		base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,30);  // prefix: D
