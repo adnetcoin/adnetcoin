@@ -507,7 +507,6 @@ bool CConnman::IsBanned(CNetAddr ip)
 
 bool CConnman::IsBanned(CSubNet subnet)
 {
-	std::cout << subnet.ToString() << "\n";
     LOCK(cs_setBanned);
     banmap_t::iterator i = setBanned.find(subnet);
     if (i != setBanned.end())
