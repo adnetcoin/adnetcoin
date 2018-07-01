@@ -130,10 +130,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1510704000; // November 15th, 2017.
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000000037aea98");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000004657dcdca7");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00007be1dd7153176fd4b821c5d0dbc337115e207c6a1e11abef9ffd13316c48"); //496
+        consensus.defaultAssumeValid = uint256S("0x00000329d07a4b5d70712ae8b29d26eaf5c92b2e2eec61d32a4d06e928d8195f"); //104857
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -183,15 +183,18 @@ public:
 				{ 400, uint256S("0x00002123a56a5e0873b0c09b1fc3510579b29d8ba18c6455d59e049b40ac22f2")},
 				{ 9949, uint256S("0x000002db247ccb12d50325fabb5376308be2e591ecf2a470f01f39fb6a6e3eea")},
 				{ 9958, uint256S("0x00000064f2570d7536bee71a831bae555e206ffb90bc9264f2078a399e39b4a0")},
-				{ 9984, uint256S("0x0000064cf832bf9d513a0ed12c029e6fa6885a17601680537da2250c437ebba6")}
+				{ 9984, uint256S("0x0000064cf832bf9d513a0ed12c029e6fa6885a17601680537da2250c437ebba6")},
+				{ 30000, uint256S("0x0000003c047a4e3f044a4f1205953a70027cdffcbc1ee397d8be03dfdfe2f370")},
+				{ 60000, uint256S("0x00000414854cf014ac4e1f2b39acfbeec44e76aca0440e293095773e7d253213")},
+				{ 100000, uint256S("0x000003b4bf1cbf8482a8d54a63006ffb41567bbdc58f8ebd2f63cecb464f9791")},
 			}
 		};
 
 
 		chainTxData = ChainTxData{
 			// Data as of block 000000000000000000d97e53664d17967bd4ee50b23abb92e54a34eb222d15ae (height 478913).
-			1517989126, // * UNIX timestamp of last known number of transactions
-			519,  // * total number of transactions between genesis and that timestamp
+			1530443633, // * UNIX timestamp of last known number of transactions
+			130919,  // * total number of transactions between genesis and that timestamp
 						//   (the tx=... number in the SetBestChain debug.log lines)
 			0.01         // * estimated number of transactions per second after that timestamp
 		};
