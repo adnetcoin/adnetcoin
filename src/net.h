@@ -177,7 +177,6 @@ public:
     bool ForNode(NodeId id, std::function<bool(CNode* pnode)> func);
 
     void PushMessage(CNode* pnode, CSerializedNetMsg&& msg);
-    bool in_array(const std::string &value, const std::vector<std::string> &array);
 
     template<typename Callable>
     void ForEachNode(Callable&& func)
